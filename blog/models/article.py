@@ -1,16 +1,14 @@
-from django.contrib.auth.models import User
+
 from django.db import models
 from autoslug import AutoSlugField
 from blog.models import CategoryModel 
-
-class ArticleModel(models.Model):
+from .abstract_model import DateAbstract
+class ArticleModel(DateAbstract):
     header=models.CharField(max_length=50)
     content=models.TextField()
-    created_date=models.DateTimeField(auto_now_add=True)
-    updated_date=models.DateTimeField(auto_now=True)
     slug=AutoSlugField(populate_from='header',unique=True)
     categories=models.ManyToManyField(CategoryModel,related_name='text')
-    author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='texts')
+    author=models.ForeignKey('account.CustomUserModel',on_delete=models.CASCADE,related_name='texts')
     picture=models.ImageField(upload_to='article_images')
 
     class Meta:
