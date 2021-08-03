@@ -4,28 +4,26 @@ from blog import models
 # Register your models here.
 admin.site.register(CategoryModel)
 
+@admin.register(ArticleModel)
 class ArticleAdmin(admin.ModelAdmin):
     search_fields=('header',)
     list_display=(
         'slug','created_date','author'
     )
 
-admin.site.register(ArticleModel,ArticleAdmin)
 
-
+@admin.register(CommentModel)
 class CommentAdmin(admin.ModelAdmin):
     search_fields=('author','comment')
     list_display=(
         'author','created_date','updated_date'
     )
 
-admin.site.register(CommentModel,CommentAdmin)
 
-
-class ContacttAdmin(admin.ModelAdmin):
+@admin.register(ContactModel)
+class ContactAdmin(admin.ModelAdmin):
     search_fields=('email','name_surname')
     list_display=(
         'email','created_date'
     )
 
-admin.site.register(ContactModel,ContacttAdmin)
