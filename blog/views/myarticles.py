@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/')
 def myarticles(request):
+    
     articles=request.user.texts.order_by('-created_date')
     page=request.GET.get('page')
     paginator=Paginator(articles,2)

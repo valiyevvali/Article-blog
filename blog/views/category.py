@@ -10,6 +10,6 @@ def category(request,categorySlug):
     paginator=Paginator(articles,1)
     return render(request,'pages/category.html',context={
         'articles':paginator.get_page(page),
-        'category_name':categorySlug
+        'category_name':category_name.name
         })
     

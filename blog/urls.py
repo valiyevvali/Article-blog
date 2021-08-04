@@ -1,9 +1,15 @@
+from blog.views.edit_article import edit_article
 from blog.views.category import category
 from django.urls import path,include
-from blog.views import home,category,myarticles
+from blog.views import home,category,myarticles,article_detail,contact,add_article,edit_article,delete_article
 
 urlpatterns = [
     path('',home,name='home'),
     path('category/<slug:categorySlug>',category,name='category'),
-    path('myarticles/',myarticles,name='myarticles')
+    path('myarticles/',myarticles,name='myarticles'),
+    path('article/<slug:articleSlug>',article_detail,name='article_detail'),
+    path('contact/',contact,name='contact'),
+    path('add_article/',add_article,name='add_article'),
+    path('edit/<slug:articleSlug>',edit_article,name='edit_article'),
+    path('delete/<slug:articleSlug>',delete_article,name='delete_article'),
 ]

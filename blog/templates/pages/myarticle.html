@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
     {% for article in articles %}
         <div class="card mb-3" >
             <div class="row g-0">
@@ -14,9 +18,17 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                <h5 class="card-title">{{ article.header }}</h5>
+                <h5 class="card-title">
+                    <a href="{% url 'article_detail' articleSlug=article.slug %}">{{ article.header }}</a>
+                </h5>
                 <p class="card-text"></p>{{ article.content|truncatechars:200 }}
                 <p class="card-text"><small class="text-muted"> {{article.updated_date|timesince}}  ago</small></p>
+                
+                <p>
+                    <a style="width: 80px;" class="btn btn-danger" href="{%url 'edit_article' articleSlug=article.slug %}">Edit</a>
+                    <a class="btn btn-primary" href="{%url 'delete_article' articleSlug=article.slug %}">Delete</a>
+                </p>
+                
                 </div>
             </div>
             </div>

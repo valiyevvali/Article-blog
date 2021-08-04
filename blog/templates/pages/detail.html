@@ -1,0 +1,77 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}
+    {{article.header}}
+{% endblock %}
+
+{% block content %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
+        <div class="card mb-3" >
+            <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ article.picture.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">
+                        {{ article.header }}
+                    </h5>
+                    <p class="card-text"></p>{{ article.content }}
+                    <p class="card-text"><small class="text-muted"> {{article.updated_date|timesince}}  ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% for comment in comments %}
+            <div class="container mt-3">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-md-8">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white p-2">
+                                <div class="d-flex flex-row user-info">
+                                    
+                                    {% if comment.author.picture %}
+                                        <img style="border-radius: 50%; width: 40px; height: 40px;" class="rounded-circle" src="{{comment.author.picture.url}}" width="40">
+                                    {% else %}
+                                        <img style="border-radius: 50%; width: 40px; height: 40px;" class="rounded-circle" src="{% static 'image/profile.png' %}" width="40">
+                                    {% endif %}
+                                        
+                                    
+                                    <div class="d-flex flex-column justify-content-start ml-2"><span style="margin-left: 20px;" class="d-block font-weight-bold name">{{comment.author.username}}</span><span style="margin-left: 20px;" class="date text-black-50">Shared publicly - {{comment.created_date|timesince}} ago</span></div>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="comment-text">{{comment.comment}}</p>
+                                </div>
+                            </div>
+                            <div class="bg-white">
+                                <div class="d-flex flex-row fs-12">
+                                    <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                    <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-light p-2">
+                                <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
+                                <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        {% empty %}
+            
+            <span>No Comment...</span>
+            
+        {% endfor %}
+            
+      
+        
+
+
+{% endblock %}
