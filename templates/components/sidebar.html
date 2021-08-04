@@ -4,11 +4,17 @@
           Menu
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">My Profile</li>
-          <li class="list-group-item">Change Password</li>
-          <li class="list-group-item">Add Article</li>
-          <li class="list-group-item">My Articles</li>
-          <li class="list-group-item">Logout</li>
+          
+          {% if request.user.is_authenticated %}
+            <li class="list-group-item">My Profile</li>
+            <li class="list-group-item">Change Password</li>
+            <li class="list-group-item">Add Article</li>
+            <li class="list-group-item"><a href="{% url 'myarticles' %}">My Articles</a></li>
+            <li class="list-group-item">Logout</li>
+          {% else %}
+            <li class="list-group-item">Login</li>
+            <li class="list-group-item">Register</li>
+          {% endif %}
         </ul>
     </div>
 </div>
