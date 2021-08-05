@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block title %}
     {{article.header}}
@@ -27,6 +28,16 @@
             </div>
         </div>
         
+        {% if request.user.is_authenticated %}
+            <form style="display: flex; align-items: center !important; justify-content: center;" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button style="height: 40px !important; " type="submit" class="btn btn-danger mt-2">Add Comment</button>
+            </form>
+        {% endif %}
+            
+       
+        
         {% for comment in comments %}
             <div class="container mt-3">
                 <div class="d-flex justify-content-center row">
@@ -46,6 +57,14 @@
                                 </div>
                                 <div class="mt-2">
                                     <p class="comment-text">{{comment.comment}}</p>
+                                    
+                                    {% if comment.author == request.user or request.user == article.author %}
+                                        <p class="comment-text">
+                                            <a style="color: red; font-size: 18px;" href="{% url 'delete_comment' comment_id=comment.id %}"><i class="fas fa-trash-alt"></i></a>
+                                        </p>
+                                    {% endif %}
+                                        
+                                   
                                 </div>
                             </div>
                             <div class="bg-white">
@@ -54,10 +73,6 @@
                                     <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
                                     <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
                                 </div>
-                            </div>
-                            <div class="bg-light p-2">
-                                <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
-                                <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
                             </div>
                         </div>
                     </div>

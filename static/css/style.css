@@ -31,3 +31,14 @@
 .textarea {
     resize: none
 }
+
+#id_comment{
+    width: 40%;
+    height: 40px;
+    min-width: 250px;
+}
+#div_id_comment{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
