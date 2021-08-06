@@ -3,7 +3,7 @@ from blog.views import home,category,myarticles,detail_article,contact,add_artic
 
 urlpatterns = [
     path('',home,name='home'),
-    path('category/<slug:categorySlug>',category,name='category'),
+    path('category/<slug:categorySlug>',category.as_view(),name='category'),
     path('myarticles/',myarticles,name='myarticles'),
     path('article/<slug:articleSlug>',detail_article.as_view(),name='article_detail'),
     path('contact/',contact,name='contact'),
