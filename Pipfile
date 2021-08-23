@@ -11,6 +11,7 @@ django-ckeditor = "*"
 django-environ = "*"
 six = "*"
 django-cleanup = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 
