@@ -8,6 +8,9 @@ django = "*"
 django-autoslug = "*"
 pillow = "*"
 django-ckeditor = "*"
+django-environ = "*"
+six = "*"
+django-cleanup = "*"
 
 [dev-packages]
 

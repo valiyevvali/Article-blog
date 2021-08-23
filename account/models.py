@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-# Create your models here.
 
+from django.contrib.auth.models import AbstractUser
 class CustomUserModel(AbstractUser):
     picture=models.ImageField(upload_to='user_pictures/',blank=True,null=True)
 
@@ -12,3 +11,4 @@ class CustomUserModel(AbstractUser):
     
     def __str__(self):
         return self.username
+    
