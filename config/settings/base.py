@@ -143,3 +143,30 @@ DEFAULT_FROM_EMAIL='valiyevvali101@gmail.com'
 EMAIL_HOST_USER = 'valiyevvali101@gmail.com'
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD')
 
+LOGGING={
+    'version' : 1,
+    'disable_existing_loggers':False,
+    'formatters':{
+        'simple_sentences':{
+            'format':'{asctime} {levelname} {message} {name} {module} {process:d} {thread:d}',
+            'style':'{'
+        }
+    },
+    'handlers':{
+        'console':{
+            'class': 'logging.StreamHandler'
+        },
+        'file':{
+            'class':'logging.FileHandler',
+            'filename':'logs/article_readers.log',
+            'formatter':'simple_sentences'
+        }
+    },
+    'loggers':{
+        'article_reader' :{
+            'handlers':['file'],
+            'level': 'INFO'
+        }
+    }
+}
+
