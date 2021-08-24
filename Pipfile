@@ -12,6 +12,9 @@ django-environ = "*"
 six = "*"
 django-cleanup = "*"
 sentry-sdk = "*"
+boto3 = "*"
+django-storages = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
