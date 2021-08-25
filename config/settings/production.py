@@ -4,7 +4,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.valiyevvali.com','127.0.0.1']
+ALLOWED_HOSTS = ['www.valiyevvali.com','127.0.0.1','3.69.150.88']
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -26,8 +26,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'prod.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
