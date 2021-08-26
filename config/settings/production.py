@@ -4,7 +4,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.valiyevvali.com','127.0.0.1','3.69.150.88']
+ALLOWED_HOSTS = ['www.valiyevvali.com','127.0.0.1','3.69.150.88','3.69.150.88:8000']
 
 AUTH_PASSWORD_VALIDATORS = [
     {
